@@ -97,7 +97,7 @@ passport.use(strategy);
 
 
 app.use('/api', indexRouter);
-app.use('/api/contact-list', contactRouter);
+app.use('/api/contact-list', passport.authenticate('jwt', {session: false}), contactRouter); 
 app.get('*', (req,res) => {
   res.sendFile(path.join(__dirname,'../../public/index.html'));
 })
